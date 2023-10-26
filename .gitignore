@@ -1,0 +1,6 @@
+*.log
+submissions/*
+results/*
+.venv/
+.vscode/
+__pycache__/

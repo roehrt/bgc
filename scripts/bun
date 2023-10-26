@@ -1,0 +1,3 @@
+#!/bin/bash
+source limits.env
+docker run --cpus ${CORES} --memory ${MEMLIMIT} -i -v ./submissions:/submissions fuen bun /submissions/$(basename $1)
