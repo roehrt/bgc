@@ -1,9 +1,5 @@
-*.log
 submissions/*
 !submissions/.gitkeep
-results/*
-!results/.gitkeep
-.venv/
 .vscode/
 .idea/
 __pycache__/
