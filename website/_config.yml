@@ -1,6 +1,6 @@
 title: Bgc
 description: >-
-  Bidding Game Challenge. Write an agent that plays a bidding game.
+  Bidding Game Challenge. Create your own agent for our round-based bidding game and compete against others!
 url: https://roehrt.github.io
 baseurl: /bgc
 markdown: redcarpet
