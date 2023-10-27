@@ -1,1 +1,1 @@
-docker build -t abc . 
+docker build -t bgc . 
