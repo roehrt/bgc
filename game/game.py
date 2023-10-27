@@ -1,7 +1,5 @@
 from agent import Agent
 from fractions import Fraction
-import datetime
-
 
 class Player:
     def __init__(self, agent, coins, opponents):
@@ -17,21 +15,28 @@ class Player:
         my_bid = self._bid()
         self.bid_history.append(my_bid)
         return my_bid
+    
+    def disqualify(self):
+        self.disqualified = True
+        self.agent.kill()
+        self.rounds_disqualified += 1
 
     def _bid(self):
         if self.disqualified:
             self.rounds_disqualified += 1
             return -1
 
-        self.agent.resume()
-        self.agent.write(self.buffer)
-        bid = int(self.agent.read())
-        self.agent.pause()
+        try:
+            self.agent.resume()
+            self.agent.write(self.buffer)
+            bid = int(self.agent.read())
+            self.agent.pause()
+        except Exception as e:
+            self.disqualify()
+            return -1
 
         if not 0 <= bid <= self.coins:
-            self.disqualified = True
-            self.agent.kill()
-            self.rounds_disqualified += 1
+            self.disqualify()
             return -1
 
         self.coins -= bid
@@ -53,7 +58,13 @@ class Player:
 
 class Game:
     def __init__(self, submissions, rounds=10**3, coins=10**5):
-        agents = [Agent(sid) for sid in submissions]
+        agents = []
+        for submission in submissions:
+            try:
+                agents.append(Agent(submission))
+            except Exception as e:
+                print(f"Failed to load {submission}: {e}", file=sys.stderr)
+    
         self.rounds = rounds
         self.coins = coins
         self.players = [
@@ -73,6 +84,8 @@ class Game:
         # TODO: parallelize
         bids = [player.bid() for player in self.players]
         highest = max(bids)
+        if highest < 0:
+            return
         winners = sum(bid == highest for bid in bids)
         for player, bid in zip(self.players, bids):
             if bid == highest:
@@ -95,7 +108,8 @@ if __name__ == "__main__":
     g = Game(submissions)
     g.play()
 
-    print(g.to_csv())
+    import sys
+    print(g.to_csv(), file=sys.stderr)
 
     ranking = sorted(
         range(len(g.players)),

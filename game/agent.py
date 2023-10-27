@@ -1,5 +1,11 @@
 import subprocess
 import signal
+import resource
+
+MB = 1024*1024
+TIMEOUT = 10
+COMPILE_TIMEOUT = 10
+MEMLIMIT = 50*MB
 
 
 class Agent:
@@ -9,13 +15,18 @@ class Agent:
         self.entrypoint = self.read_team_file("entrypoint.txt")
         self.name = self.read_team_file("team.txt")
         assert self.compile()
+        def set_limits():
+            resource.setrlimit(resource.RLIMIT_CPU, (TIMEOUT, TIMEOUT))
+            resource.setrlimit(resource.RLIMIT_DATA, (MEMLIMIT, MEMLIMIT))
         self.process = subprocess.Popen(
-            f"timeout 10 {self.base_path}/run {self.base_path}/{self.entrypoint}",
+            f"{self.base_path}/run {self.base_path}/{self.entrypoint}",
             stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,
             shell=True,
             universal_newlines=True,
+            preexec_fn=set_limits,
         )
+        self.pause()
 
     def read_team_file(self, filename):
         with open(f"{self.base_path}/{filename}") as f:
@@ -26,7 +37,7 @@ class Agent:
             subprocess.run(
                 f"sh {self.base_path}/compile {self.base_path}/{self.entrypoint}",
                 shell=True,
-                timeout=10,
+                timeout=COMPILE_TIMEOUT,
             ).returncode
             == 0
         )
