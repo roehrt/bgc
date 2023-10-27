@@ -1,0 +1,8 @@
+title: Bgc
+description: >-
+  Bidding Game Challenge. Write an agent 
+baseurl: "/bgc/"
+markdown: redcarpet
+highlighter: pygments
+version: 0.1
+repo: https://github.com/roehrt/bcg
