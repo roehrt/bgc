@@ -5,4 +5,18 @@ results/*
 !results/.gitkeep
 .venv/
 .vscode/
+.idea/
 __pycache__/
+
+# LaTeX
+problem_statement/*.aux
+problem_statement/*.bbl
+problem_statement/*.blg
+problem_statement/*.fdb_latexmk
+problem_statement/*.fls
+problem_statement/*.log
+problem_statement/*.out
+problem_statement/*.synctex.gz
+problem_statement/*.toc
+problem_statement/*.pdf
+problem_statement/_minted-*

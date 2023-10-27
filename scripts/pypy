@@ -1,3 +1,0 @@
-#!/usr/bin/bash
-source limits.env
-docker run --cpus ${CORES} --memory ${MEMLIMIT} -i -v ./submissions:/submissions fuen pypy3 /submissions/$(basename $1)

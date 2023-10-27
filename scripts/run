@@ -1,3 +1,0 @@
-#!/bin/bash
-source limits.env
-docker run -i -v ./submissions:/submissions fuen /submissions/$(basename $1).out

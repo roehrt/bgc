@@ -1,0 +1,166 @@
+\documentclass[
+    a4paper,
+    12pt,
+    parskip=half,
+    headings=standardclasses,
+    footskip=0pt,
+    footlines=1,
+    headheight=80in
+]{scrartcl}
+
+\sloppy
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{minted}
+
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+
+\usepackage{newpxtext,newpxmath}
+
+\newcommand{\lgrey}{black!5}
+
+\begin{document}
+
+\begin{center}
+    {\LARGE\textbf{Automated Bidding Challenge}}\\[6pt]
+    Time limit: 10 seconds, Memory limit: 50 MB
+\end{center}
+
+\paragraph*{Problem}
+
+For this challenge, you will be playing a round-based auction game against all
+other participants simultaneously.
+
+You start off with $10^5$ coins. In each round, you bid a number of coins. Everyone loses the number of coins they bid.
+The player with the highest bid wins the round and gets 1 point. In case of a tie, all participants with the highest bid
+split the point evenly.
+
+After $10^3$ rounds, all players are ranked by the
+number of points they earned (for more details, see \hyperref[scoring]{Scoring}).
+
+There will be 3 passes of the game as some solutions may use
+randomized strategies.
+
+\paragraph*{Interaction} All interaction is done via standard input and output.
+
+The first line of input contains a single integer $n$ ($1 \leq n \leq 10^3$),
+the number of opponents.
+
+Then for each round, you submit a bid by printing a single integer $b$ ($0 \leq
+    b \leq 10^5$) to standard output\footnote{Remember to flush the output!}. After
+making a bid, you will receive a line of input containing $n$ space separated
+integers $b_1, \ldots, b_n$ ($-1 \leq b_i \leq 10^5$), the bid of your $i$-th
+opponent. A bid of $-1$ means that the opponent made an invalid bid or hit the
+time or memory limit. You are not required to read in the bids of your opponents after
+making your last bid.
+
+If you make an invalid bid or hit the time or memory limit, you will be
+disqualified for the rest of the game. Your earned points will still remain valid.
+
+See \hyperref[sample-programs]{Sample Programs} for an exemplary implementation.
+
+\paragraph*{Example interaction} Below is an example interaction between four participants over three rounds
+each starting with $6$ coins. On the left is the input given to the program, on the right is the output of the program.
+
+\begin{tcolorbox}[colback=\lgrey,fontupper=\small\ttfamily]
+3
+
+\hfill0
+
+3 2 4
+
+\hfill4
+
+2 3 -1
+
+\hfill2
+
+1 1 -1
+\end{tcolorbox}
+
+\clearpage
+
+\subsection*{Appendix}
+
+\paragraph*{Sample programs}\label{sample-programs}
+
+Here are two sample programs that play the game using a simple ``copy the
+winner'' strategy.
+
+\begin{minted}[bgcolor=\lgrey]{python}
+# copycat.py
+n = int(input())
+coins = 10**5
+rounds = 10**3
+
+other_bids = [0]*n
+
+for round in range(rounds):
+    my_bid = max(0, min(coins, max(other_bids)))
+    coins -= my_bid
+    print(my_bid, flush=True)
+    
+    other_bids = [int(x) for x in input().split()]
+\end{minted}
+
+\begin{minted}[bgcolor=\lgrey]{cpp}
+// copycat.cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    cin.tie(0)->sync_with_stdio(0);
+    int n; cin >> n;
+    int coins = 1e5, rounds = 1e3;
+    vector<int> other_bids(n);
+    for (int round = 0; round < rounds; round++) {
+        int my_bid = clamp(
+            *max_element(other_bids.begin(), other_bids.end()),
+            0,
+            coins
+        );
+        coins -= my_bid;
+        cout << my_bid << endl;
+        for (int &bid : other_bids) cin >> bid;
+    }
+}
+\end{minted}
+
+\paragraph*{Scoring}\label{scoring}
+
+Submissions are ranked by the following criteria, in order:
+\begin{enumerate}
+    \item The number of points.
+    \item The number of rounds being not disqualified.
+    \item The number of coins left.
+\end{enumerate}
+
+\paragraph*{System Details} All submissions are run on a single machine with the
+following specifications:
+\begin{itemize}
+    \item Intel i7-11370H
+    \item 16 GB RAM
+    \item Debian GNU/Linux 11 (bullseye)
+\end{itemize}
+
+You may submit your solution as a single source file in any of the following
+languages:
+\begin{enumerate}
+    \raggedright
+    \item C++ 20 (g++ 10.2.1)\\[4pt]compiled as \texttt{g++ -std=gnu++20 -x c++ -Wall -O2 -static -pipe -o \$1 "\$1.cpp" -lm}
+    \item Python 3.7.10 (PyPy 7.3.5)\\[4pt]run as \texttt{pypy3 \$1}
+\end{enumerate}
+You may only use the standard library of your chosen language.
+You may not use
+\begin{enumerate}
+    \item any other libraries or packages.
+    \item any other files or resources.
+    \item any form of inter-process communication.
+    \item the internet.
+\end{enumerate}
+
+\end{document}

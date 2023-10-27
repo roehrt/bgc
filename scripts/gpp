@@ -1,4 +1,0 @@
-#!/bin/bash
-source limits.env
-SRC=$(basename $1)
-docker run -i -v ./submissions:/submissions fuen timeout $COMPILE_TIMELIMIT g++ -std=gnu++20 -x c++ -Wall -O2 -static -pipe -o /submissions/$SRC.out /submissions/$SRC -lm

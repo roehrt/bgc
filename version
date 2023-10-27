@@ -1,2 +1,0 @@
-#!/bin/bash
-docker run oven/bun lsb_release -a
