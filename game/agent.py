@@ -22,6 +22,7 @@ class Agent:
             f"{self.base_path}/run {self.base_path}/{self.entrypoint}",
             stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,
+            stderr=subprocess.DEVNULL,
             shell=True,
             universal_newlines=True,
             preexec_fn=set_limits,
