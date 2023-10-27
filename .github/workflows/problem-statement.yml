@@ -1,0 +1,26 @@
+name: Build problem statement
+
+on:
+  release:
+    types:
+      - created
+
+jobs:
+  build:
+    name: Build LaTeX Document
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - uses: xu-cheng/latex-action@v3
+      with:
+        root_file: problem_statement/challenge.tex
+        latexmk_shell_escape: true
+
+    - name: Upload PDF Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: pdf-artifact
+        path: problem_statement/challenge.pdf
