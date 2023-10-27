@@ -16,3 +16,9 @@ problem_statement/*.synctex.gz
 problem_statement/*.toc
 problem_statement/*.pdf
 problem_statement/_minted-*
+
+website/_site
+website/.sass-cache
+website/.jekyll-cache
+website/.jekyll-metadata
+website/vendor

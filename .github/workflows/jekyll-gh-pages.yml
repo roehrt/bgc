@@ -31,11 +31,11 @@ jobs:
       - name: Build problem statement
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: challenge.tex
+          root_file: problem.tex
           latexmk_shell_escape: true
           working_directory: ./problem_statement
       - name: Move PDF
-        run: mv ./problem_statement/challenge.pdf ./website/public/bgc.pdf
+        run: mv ./problem_statement/problem.pdf ./website/problem.pdf
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Build with Jekyll
