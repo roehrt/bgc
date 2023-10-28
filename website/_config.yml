@@ -7,3 +7,4 @@ markdown: redcarpet
 highlighter: pygments
 version: 0.1
 repo: https://github.com/roehrt/bcg
+pdf: problem-bgc.pdf

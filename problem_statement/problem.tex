@@ -88,19 +88,18 @@ each starting with $6$ coins. On the left is the input given to the program, on 
 
 \paragraph*{Sample programs}\label{sample-programs}
 
-Here are two sample programs that play the game using a simple ``copy the
+Here are two sample programs that play the game using a simple random and ``copy the
 winner'' strategy.
 
 \begin{minted}[bgcolor=\lgrey]{python}
-# copycat.py
+# rand.py
+import random
 n = int(input())
 coins = 10**5
 rounds = 10**3
 
-other_bids = [0]*n
-
 for round in range(rounds):
-    my_bid = max(0, min(coins, max(other_bids)))
+    my_bid = random.randint(0, coins)
     coins -= my_bid
     print(my_bid, flush=True)
     
@@ -138,16 +137,17 @@ Submissions are ranked by the following criteria, in order:
     \item The number of rounds being not disqualified.
     \item The number of coins left.
 \end{enumerate}
+All numbers are calculated as the sum over all passes.
 
 \paragraph*{System Details} All submissions are run on a single machine with the
 following specifications:
 \begin{itemize}
-    \item Intel i7-11370H
-    \item 16 GB RAM
-    \item Debian GNU/Linux 11 (bullseye)
+    \item Intel i7-11370H or better
+    \item 16 GB RAM or more
+    \item Debian GNU/Linux 12 (bookworm)
 \end{itemize}
 
-You may submit your solution as a single source file in any of the following
+You may submit your solution as a single source file up to $64$ kB in any of the following
 languages:
 \begin{enumerate}
     \raggedright
