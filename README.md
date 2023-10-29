@@ -6,3 +6,4 @@ For more information about the game, refer to the [website](https://roehrt.githu
 - the code for the game engine
 - two example submissions (in `submissions/`)
 - the code for the website (in `website/`)
+- the code for the problem statement (in `problem/`)

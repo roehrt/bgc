@@ -33,9 +33,9 @@ jobs:
         with:
           root_file: problem.tex
           latexmk_shell_escape: true
-          working_directory: ./problem_statement
+          working_directory: ./problem
       - name: Move PDF
-        run: mv ./problem_statement/problem.pdf ./website/problem-bgc.pdf
+        run: mv ./problem/problem.pdf ./website/problem-bgc.pdf
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Build with Jekyll
