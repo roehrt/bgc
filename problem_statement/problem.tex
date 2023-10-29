@@ -27,7 +27,8 @@
 
 \begin{center}
     {\LARGE\textbf{Bidding Game Challenge}}\\[6pt]
-    Time limit: 10 seconds, Memory limit: 50 MB
+    Time limit: 10 seconds, Memory limit: 50 MB\\
+    {\small Deadline for submissions: \textbf{TBA}}
 \end{center}
 
 \paragraph*{Problem}
@@ -40,7 +41,7 @@ The player with the highest bid wins the round and gets 1 point. In case of a ti
 split the point evenly.
 
 After $10^3$ rounds, all players are ranked by the
-number of points they earned (for more details, see \hyperref[scoring]{Scoring}).
+number of points they earned (see \hyperref[scoring]{Scoring} for more details).
 
 There will be 3 passes of the game as some solutions may use
 randomized strategies.
@@ -71,7 +72,7 @@ each starting with $6$ coins. On the left is the input given to the program, on 
 
 \hfill0
 
-3 2 4
+2 2 4
 
 \hfill4
 
@@ -79,8 +80,15 @@ each starting with $6$ coins. On the left is the input given to the program, on 
 
 \hfill2
 
-1 1 -1
+2 1 -1
 \end{tcolorbox}
+
+\textit{Explanation.} In the first round, the bids are $2$, $2$, $4$ and $0$. Therefore opponent $3$ wins the round and gets $1$ point.
+In the second round, the bids are $2$, $3$ and $4$, so we win. Opponent $3$ made an invalid bid and is disqualified from now on.
+In the third and final round, the bids are $2$, $1$ and $2$, so we win together with opponent $1$ and get half points each.
+Opponent $3$ remains disqualified.
+
+So we win with $1.5$ points in total followed by opponent $3$ with $1$ point, opponent $2$ with $0.5$ points and opponent $1$ with $0$ points.
 
 \clearpage
 
