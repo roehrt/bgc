@@ -1,1 +1,1 @@
-docker run -v ./submissions:/submissions bgc mypython /game/game.py
+docker run bgc mypython /game/game.py
