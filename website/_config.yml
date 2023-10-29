@@ -3,8 +3,7 @@ description: >-
   Bidding Game Challenge. Create your own agent for our round-based bidding game and compete against others!
 url: https://roehrt.github.io
 baseurl: /bgc
-markdown: redcarpet
-highlighter: pygments
-version: 0.1
-repo: https://github.com/roehrt/bcg
+markdown: kramdown
+version: 0.2
+repo: https://github.com/roehrt/bgc
 pdf: problem-bgc.pdf
