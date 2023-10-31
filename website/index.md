@@ -14,6 +14,6 @@ We will play 10³ rounds.
 
 For a more detailed description of the game, read the [problem statement]({{ site.baseurl }}/{{ site.pdf }}).
 
-Deadline for submissions: **TBA**
+Deadline for submissions: **{{ site.deadline }}**
 
 Please don't hesitate to ask: `klub-coding-challenges-sprecher (at) hpi (dot) de`
