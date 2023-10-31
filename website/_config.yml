@@ -4,6 +4,6 @@ description: >-
 url: https://roehrt.github.io
 baseurl: /bgc
 markdown: kramdown
-version: 0.2
+version: 0.3
 repo: https://github.com/roehrt/bgc
 pdf: problem-bgc.pdf
