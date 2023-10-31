@@ -7,4 +7,4 @@ markdown: kramdown
 version: 0.3
 repo: https://github.com/roehrt/bgc
 pdf: problem-bgc.pdf
-deadline: 2019-11-30 CET
+deadline: 2019-11-30 23:59:59 CET

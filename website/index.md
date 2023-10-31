@@ -1,7 +1,4 @@
----
-layout: default
-title: Home
----
+# Bidding Game Challenge
 
 #### Abstract
 
@@ -16,4 +13,8 @@ For a more detailed description of the game, read the [problem statement]({{ sit
 
 Deadline for submissions: **{{ site.deadline }}**
 
-Please don't hesitate to ask: `klub-coding-challenges-sprecher (at) hpi (dot) de`
+Feel free to ask anything: `klub-coding-challenges-sprecher (at) hpi (dot) de`
+
+Looking forward to your submissions!
+
+Look! A wild [platypus]({{ site.baseurl }}/platypus) appeared!
