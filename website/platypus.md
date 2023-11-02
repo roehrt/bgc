@@ -1,5 +1,9 @@
 # Platypus
 
-As every good challenge should, this one features a platypus.
+As every good challenge should, this one features platypuses.
 
-![Platypus]({{ site.baseurl }}/public/platypus.png)
+![Baddie Platypus]({{ site.baseurl }}/public/platypus/baddie.jpg)
+![Biddie Platypus]({{ site.baseurl }}/public/platypus/biddie.jpg)
+![Bluie Platypus]({{ site.baseurl }}/public/platypus/bluie.jpg)
+![Cutie Platypus]({{ site.baseurl }}/public/platypus/cutie.jpg)
+![Hackie Platypus]({{ site.baseurl }}/public/platypus/hackie.jpg)
