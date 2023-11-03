@@ -1,5 +1,7 @@
 # Bidding Game Challenge
 
+**Everyone is welcome to participate!**
+
 #### Abstract
 
 > For this challenge, you will be playing a round-based auction game against all
