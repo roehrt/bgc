@@ -36,7 +36,7 @@ class Agent:
     def compile(self):
         return (
             subprocess.run(
-                f"sh {self.base_path}/compile {self.base_path}/{self.entrypoint}",
+                f"{self.base_path}/compile {self.base_path}/{self.entrypoint}",
                 shell=True,
                 timeout=COMPILE_TIMEOUT,
             ).returncode
