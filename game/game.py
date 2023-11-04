@@ -43,7 +43,7 @@ class Player:
         return bid
 
     def inform(self, bids):
-        self.buffer = "\n".join(map(str, bids))
+        self.buffer = " ".join(map(str, bids))
 
     def score(self):
         return (self.points, -self.rounds_disqualified, self.coins)
