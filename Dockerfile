@@ -11,6 +11,7 @@ RUN apt-get install -y --no-install-recommends \
 COPY submissions /submissions
 COPY scripts/ /scripts/bin
 ENV PATH="${PATH}:/scripts/bin"
+ENV PYTHONUNBUFFERED=1
 COPY game /game
 
 # to confuse CTF people

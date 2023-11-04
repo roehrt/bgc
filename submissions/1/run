@@ -1,2 +1,2 @@
 #!/usr/bin/bash
-pypy3 $1
+mypython $1
