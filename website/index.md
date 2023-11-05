@@ -15,7 +15,7 @@ For a more detailed description of the game, read the [problem statement]({{ sit
 
 Deadline for submissions: **{{ site.deadline }}**
 
-Feel free to ask anything: `klub-coding-challenges-sprecher (at) hpi (dot) de`
+Feel free to ask anything: `bidding-game (at) proton (dot) me`
 
 Looking forward to your submissions!
 
