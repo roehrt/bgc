@@ -8,16 +8,18 @@ class Player:
         self.points = Fraction(0)
         self.rounds_disqualified = 0
         self.disqualified = False
+        self.disqualified_reason = None
         self.bid_history = []
-        self.buffer = str(opponents)
+        self.agent.write(opponents)
 
     def bid(self):
         my_bid = self._bid()
         self.bid_history.append(my_bid)
         return my_bid
     
-    def disqualify(self):
+    def disqualify(self, reason):
         self.disqualified = True
+        self.disqualified_reason = reason
         self.agent.kill()
         self.rounds_disqualified += 1
 
@@ -27,23 +29,20 @@ class Player:
             return -1
 
         try:
-            self.agent.resume()
-            self.agent.write(self.buffer)
             bid = int(self.agent.read())
-            self.agent.pause()
         except Exception as e:
-            self.disqualify()
+            self.disqualify(str(e))
             return -1
 
         if not 0 <= bid <= self.coins:
-            self.disqualify()
+            self.disqualify(f'Invalid bid: {bid}')
             return -1
 
         self.coins -= bid
         return bid
 
     def inform(self, bids):
-        self.buffer = " ".join(map(str, bids))
+        self.agent.write(" ".join(map(str, bids)))
 
     def score(self):
         return (self.points, -self.rounds_disqualified, self.coins)
@@ -77,11 +76,12 @@ class Game:
         ]
 
     def play(self):
-        for round in range(self.rounds):
+        for _ in range(self.rounds):
             self.play_round()
+        for player in self.players:
+            player.agent.kill()
 
     def play_round(self):
-        # TODO: parallelize
         bids = [player.bid() for player in self.players]
         highest = max(bids)
         if highest < 0:

@@ -27,7 +27,6 @@ class Agent:
             universal_newlines=True,
             preexec_fn=set_limits,
         )
-        self.pause()
 
     def read_team_file(self, filename):
         with open(f"{self.base_path}/{filename}") as f:
@@ -42,12 +41,6 @@ class Agent:
             ).returncode
             == 0
         )
-
-    def pause(self):
-        self.process.send_signal(signal.SIGSTOP)
-
-    def resume(self):
-        self.process.send_signal(signal.SIGCONT)
 
     def kill(self):
         self.process.kill()
