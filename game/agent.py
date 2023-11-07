@@ -1,45 +1,18 @@
 import subprocess
-import signal
-import resource
-
-MB = 1024*1024
-TIMEOUT = 10
-COMPILE_TIMEOUT = 30
-MEMLIMIT = 50*MB
-
 
 class Agent:
     def __init__(self, sid):
         self.sid = sid
-        self.base_path = f"/submissions/{self.sid}"
-        self.entrypoint = self.read_team_file("entrypoint.txt")
-        self.name = self.read_team_file("team.txt")
-        assert self.compile()
-        def set_limits():
-            resource.setrlimit(resource.RLIMIT_CPU, (TIMEOUT, TIMEOUT))
-            resource.setrlimit(resource.RLIMIT_DATA, (MEMLIMIT, MEMLIMIT))
+        self.base_path = f"submissions/{self.sid}"
+        with open(f"{self.base_path}/team.txt") as f:
+            self.name = f.read().strip()
         self.process = subprocess.Popen(
-            f"{self.base_path}/run {self.base_path}/{self.entrypoint}",
+            f"docker run -i -v ./{self.base_path}/:/submission/:ro bgc",
             stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,
             stderr=subprocess.DEVNULL,
             shell=True,
             universal_newlines=True,
-            preexec_fn=set_limits,
-        )
-
-    def read_team_file(self, filename):
-        with open(f"{self.base_path}/{filename}") as f:
-            return f.read().strip()
-
-    def compile(self):
-        return (
-            subprocess.run(
-                f"{self.base_path}/compile {self.base_path}/{self.entrypoint}",
-                shell=True,
-                timeout=COMPILE_TIMEOUT,
-            ).returncode
-            == 0
         )
 
     def kill(self):

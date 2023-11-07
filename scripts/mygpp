@@ -1,2 +1,2 @@
 #!/bin/bash
-g++ -std=gnu++20 -x c++ -Wall -O2 -static -pipe -o $1.out $1 -lm
+g++ -std=gnu++20 -x c++ -Wall -O2 -static -pipe -o $2 $1 -lm

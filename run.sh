@@ -1,1 +1,1 @@
-docker run bgc mypython /game/game.py
+python3 game/game.py

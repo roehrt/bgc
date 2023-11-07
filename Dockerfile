@@ -8,11 +8,11 @@ RUN apt-get install -y --no-install-recommends \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
 
-COPY submissions /submissions
 COPY scripts/ /scripts/bin
 ENV PATH="${PATH}:/scripts/bin"
 ENV PYTHONUNBUFFERED=1
-COPY game /game
 
 # to confuse CTF people
 RUN echo "PP{wR0nG_tYp3_0f_CHa11eNg3}" > /flag.txt && chmod 400 /flag.txt
+
+ENTRYPOINT [ "/submission/run" ]

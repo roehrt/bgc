@@ -1,2 +1,3 @@
 #!/usr/bin/bash
-mypython $1
+ulimit -t 10 -m 51200
+mypython /submission/main.py

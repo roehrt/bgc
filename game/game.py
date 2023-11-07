@@ -96,14 +96,19 @@ class Game:
             player.inform(other_bids)
 
     def to_csv(self):
+        header = ["name", "disqualified_reason"] + list(range(1, self.rounds+1))
+        data = [header] + [
+            [player.name, player.disqualified_reason] + player.bid_history
+            for player in self.players
+        ]
         return "\n".join(
-            ",".join(map(str, [player.name]+player.bid_history)) for player in self.players
+            ",".join(map(str, row)) for row in data
         )
 
 
 if __name__ == "__main__":
     from pathlib import Path
-    submissions = [x.parts[-1] for x in Path("/submissions").iterdir() if x.is_dir()]
+    submissions = [x.parts[-1] for x in Path("submissions").iterdir() if x.is_dir()]
     
     g = Game(submissions)
     g.play()

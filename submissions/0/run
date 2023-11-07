@@ -1,2 +1,4 @@
 #!/usr/bin/bash
-./$1.out
+mygpp /submission/main.cpp /tmp/main
+ulimit -t 10 -m 51200
+/tmp/main
