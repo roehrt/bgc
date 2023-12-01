@@ -20,3 +20,10 @@ Feel free to ask anything: `bidding-game (at) proton (dot) me`
 Looking forward to your submissions!
 
 Look! A wild [platypus]({{ site.baseurl }}/platypus) appeared!
+
+#### Update: 01-12-2023
+
+Due to some systems shenanigans, we won't be able to evaluate your submissions before 04-12-2023.
+We are sorry. We therefore extend the deadline to **{{ site.deadline }}**. As a token of appreciation
+for your understanding, we are pleased to announce a special prize for the challenge winner: a delightful
+(plush) platypus!
