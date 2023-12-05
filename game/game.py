@@ -22,7 +22,6 @@ class Player:
         self.disqualified = True
         self.disqualified_reason = reason
         self.agent.kill()
-        self.rounds_disqualified += 1
 
     def _bid(self):
         if self.disqualified:
@@ -33,6 +32,7 @@ class Player:
             bid = int(self.agent.read())
         except Exception as e:
             self.disqualify(str(e))
+            self.rounds_disqualified += 1
             return -1
 
         if not 0 <= bid <= self.coins:
@@ -43,7 +43,11 @@ class Player:
         return bid
 
     def inform(self, bids):
-        self.agent.write(" ".join(map(str, bids)))
+        try:
+            self.agent.write(" ".join(map(str, bids)))
+        except Exception as e:
+            self.disqualify(str(e))
+            return -1
 
     def score(self):
         return (self.points, -self.rounds_disqualified, self.coins)
