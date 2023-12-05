@@ -1,3 +1,4 @@
+import sys
 from agent import Agent
 from fractions import Fraction
 
@@ -113,7 +114,6 @@ if __name__ == "__main__":
     g = Game(submissions)
     g.play()
 
-    import sys
     print(g.to_csv(), file=sys.stderr)
 
     ranking = sorted(
