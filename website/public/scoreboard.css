@@ -1,0 +1,8 @@
+td[data-disqualified] {
+    color: #999;
+}
+
+td[data-highest] {
+    color: #0a8;
+    font-weight: bold;
+}

@@ -1,3 +1,7 @@
+# Results are out!
+
+[Official results]({{ site.baseurl }}/results) are out!
+
 # Bidding Game Challenge
 
 **Everyone is welcome to participate!**
